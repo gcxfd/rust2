@@ -1,5 +1,5 @@
 use crate::args::DIR;
-use sled::Db;
+use sled::{Db, Tree};
 use static_init::dynamic;
 use std::path::Path;
 
@@ -10,3 +10,6 @@ pub static KV: Db = sled::Config::new()
   .cache_capacity(256 * 1024 * 1024) // 256 MB
   .open()
   .unwrap();
+
+#[dynamic]
+pub static IPV4: Tree = KV.open_tree("ipv4").unwrap();
