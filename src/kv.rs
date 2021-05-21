@@ -4,7 +4,7 @@ use static_init::dynamic;
 use std::path::Path;
 
 #[dynamic]
-pub static KV: Db = sled::Config::new()
+pub static db: Db = sled::Config::new()
   .path(Path::new(&*DIR).join("kv"))
   .use_compression(true)
   .cache_capacity(256 * 1024 * 1024) // 256 MB
@@ -12,7 +12,7 @@ pub static KV: Db = sled::Config::new()
   .unwrap();
 
 #[dynamic]
-pub static ipv4: Tree = KV.open_tree("ipv4").unwrap();
+pub static id: Tree = db.open_tree("id").unwrap();
 
 #[dynamic]
-pub static id: Tree = KV.open_tree("id").unwrap();
+pub static ipv4Id: Tree = db.open_tree("ipv4Id").unwrap();
