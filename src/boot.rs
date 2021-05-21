@@ -14,6 +14,7 @@ macro_rules! listen {
 }
 
 pub async fn boot() {
+  info!("> {:?}", std::env::current_exe().unwrap().parent().unwrap());
   let _ = futures::join!(
     listen!(udp, create, {
       format!("0.0.0.0:{}", rand::thread_rng().gen_range(10000..30000))
