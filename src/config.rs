@@ -86,6 +86,11 @@ pub mod get {
 
   config_get!(default, _k, v, {});
   config_get!(create, k, val, {
+    {
+      crate::config::CONFIG
+        .write()
+        .insert(k.to_string(), val.clone())
+    };
     let p = Path::new(&*DIR).join("config.ini");
     let mut conf = match Ini::load_from_file(&p) {
       Ok(v) => v,
