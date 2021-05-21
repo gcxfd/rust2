@@ -15,4 +15,4 @@ pub static db: Db = sled::Config::new()
 pub static id: Tree = db.open_tree("id").unwrap();
 
 #[dynamic]
-pub static idIpv4: Tree = db.open_tree("idIpv4").unwrap();
+pub static ipv4Time: Tree = db.open_tree("ipv4Time").unwrap();
