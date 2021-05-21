@@ -1,7 +1,7 @@
 @$ = {{$dotenv url}}
 
 ### test
-GET {{$}}
+POST {{$}}
 
-hi
+您好
 
