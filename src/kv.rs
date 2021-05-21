@@ -12,4 +12,7 @@ pub static KV: Db = sled::Config::new()
   .unwrap();
 
 #[dynamic]
-pub static IPV4: Tree = KV.open_tree("ipv4").unwrap();
+pub static ipv4: Tree = KV.open_tree("ipv4").unwrap();
+
+#[dynamic]
+pub static id: Tree = KV.open_tree("id").unwrap();

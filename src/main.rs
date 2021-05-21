@@ -8,11 +8,13 @@ mod encode;
 mod file;
 mod http;
 mod init;
-mod kv;
 mod net;
 mod udp;
 mod var;
 mod ws;
+
+#[allow(non_upper_case_globals)]
+mod kv;
 
 #[async_std::main]
 async fn main() {
