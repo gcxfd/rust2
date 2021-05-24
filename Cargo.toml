@@ -60,4 +60,4 @@ features = ["unstable","attributes"]
 
 [dependencies.sled]
 version = "0.34.6"
-features = ["compression"]
+#features = ["compression"]

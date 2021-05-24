@@ -6,7 +6,7 @@ use std::path::Path;
 #[dynamic]
 pub static db: Db = sled::Config::new()
   .path(Path::new(&*DIR).join("kv"))
-  .use_compression(true)
+  //.use_compression(true)
   .cache_capacity(256 * 1024 * 1024) // 256 MB
   .open()
   .unwrap();
