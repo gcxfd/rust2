@@ -72,13 +72,17 @@ pub mod get {
     ($name: ident, $key: ident, $create: ident, $created: expr) => {
       pub fn $name(key: &str, create: fn() -> String) -> String {
         let $key = key;
-        match crate::config::CONFIG.read().get(key) {
-          Some(v) => v.to_string(),
-          _ => {
-            let $create = create();
-            $created;
-            $create
-          }
+        let val = (match crate::config::CONFIG.read().get(key) {
+          Some(v) => v,
+          _ => "",
+        })
+        .to_string();
+        if val.is_empty() {
+          let $create = create();
+          $created;
+          $create
+        } else {
+          val
         }
       }
     };
