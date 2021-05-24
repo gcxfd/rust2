@@ -9,6 +9,7 @@ mod file;
 mod http;
 mod init;
 mod net;
+mod sql;
 mod udp;
 mod var;
 mod ws;
