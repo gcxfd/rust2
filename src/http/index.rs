@@ -29,7 +29,9 @@ pub async fn get(mut req: Request<()>) -> tide::Result {
   println!("body = {:?}", body);
   println!(
     "sqlite version = {:?}",
-    query!("select sqlite_version();").fetch_all(&DB).await?
+    query!("select sqlite_version();")
+      .fetch_all(&DB.read())
+      .await?
   );
 
   Ok(match kv::id.update_and_fetch("ipv4", increment)? {
