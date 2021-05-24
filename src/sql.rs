@@ -6,7 +6,7 @@ use std::path::Path;
 use std::str::FromStr;
 
 #[dynamic]
-pub static db: SqliteConnection = futures::executor::block_on(async {
+pub static mut DB: SqliteConnection = futures::executor::block_on(async {
   SqliteConnection::connect_with(
     &SqliteConnectOptions::from_str(&format!(
       "sqlite://{}",
