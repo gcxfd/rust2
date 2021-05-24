@@ -1,4 +1,5 @@
 use crate::kv;
+use sqlx::query;
 use std::convert::TryInto;
 use tide::{Body, Request, Response};
 
@@ -25,6 +26,7 @@ pub async fn post(_: Request<()>) -> tide::Result {
 pub async fn get(mut req: Request<()>) -> tide::Result {
   let body = req.body_bytes().await?;
   println!("body = {:?}", body);
+  println!("sqlite version = {:?}", query!("select sqlite_version();"));
 
   Ok(match kv::id.update_and_fetch("ipv4", increment)? {
     Some(id) => format!("ipv4 id {}", u64::from_be_bytes((&*id).try_into()?)).into(),
